@@ -16,7 +16,17 @@ class TasksScreen extends StatelessWidget {
           color: Colors.white,
         ),
         onPressed: () {
-          showModalBottomSheet(context: context, builder: (context) => const AddTaskScreen(),);
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            builder: (context) => SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: const AddTaskScreen(),
+              ),
+            ),
+          );
         },
       ),
       backgroundColor: kAppColor,
@@ -68,7 +78,7 @@ class TasksScreen extends StatelessWidget {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: TasksList(),
+              child: const TasksList(),
             ),
           ),
         ],
