@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:to_do_app/constants.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  const AddTaskScreen({super.key});
+  final Function addTaskCallback;
+  const AddTaskScreen(this.addTaskCallback, {super.key});
+  
 
   @override
   Widget build(BuildContext context) {
+
+    String? newTaskTitle;
     return Container(
       color: const Color(0xFF757575),
       child: Container(
@@ -16,13 +20,13 @@ class AddTaskScreen extends StatelessWidget {
             topRight: Radius.circular(20.0),
           ),
         ),
-        child: const Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 40.0,
             ),
-            Text(
+            const Text(
               'Add Task',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -30,27 +34,32 @@ class AddTaskScreen extends StatelessWidget {
                 fontSize: 30.0,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20.0,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 50.0),
+              padding: const EdgeInsets.symmetric(horizontal: 50.0),
               child: TextField(
                 autofocus: true,
                 textAlign: TextAlign.center,
+                onChanged: (newText){
+                  newTaskTitle = newText;
+                },
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20.0,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 50.0),
+              padding: const EdgeInsets.symmetric(horizontal: 50.0),
               child: TextButton(
-                onPressed: null,
-                style: ButtonStyle(
+                onPressed: (){
+                  addTaskCallback(newTaskTitle);
+                },
+                style: const ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(kAppColor),
                 ),
-                child: Text(
+                child: const Text(
                   'Add',
                   style: TextStyle(color: Colors.white, fontSize: 22.0),
                 ),
